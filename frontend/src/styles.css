@@ -1,0 +1,4 @@
+/* Minimal styles - replace with Tailwind if desired */
+body { font-family: Inter, Arial, sans-serif; padding: 20px; }
+input { padding: 8px; margin: 6px 0; width: 100%; max-width: 420px; }
+button { padding: 8px 12px; }

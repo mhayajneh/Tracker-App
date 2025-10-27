@@ -30,3 +30,6 @@ CREATE TABLE IF NOT EXISTS audit_logs (
   meta JSONB,
   created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
+
+
+ALTER TABLE projects ADD COLUMN completed_at TIMESTAMP NULL;

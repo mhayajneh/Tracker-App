@@ -45,6 +45,12 @@ Frontend default: `http://localhost:5173`
 - POST /api/projects
 - PUT /api/projects/:id
 - DELETE /api/projects/:id
+- GET /api/analytics/summary
+- POST /api/ingest/init
+- POST /api/pipeline/callback
+- POST /api/ingest/status/:id
+- POST /api/jobs/recompute-metrics
+- GET /api/jobs/status/:id
 
 All project endpoints require `Authorization: Bearer <token>` and are scoped to the user's organization.
 

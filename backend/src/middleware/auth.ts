@@ -6,6 +6,9 @@ dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET || "secret";
 
 export interface AuthRequest extends Request {
+  params: any;
+  headers: any;
+  body: any;
   user?: { id: number; email: string; organization_id: number };
 }
 

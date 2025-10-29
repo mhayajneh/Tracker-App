@@ -5,7 +5,7 @@ import { requireAuth, AuthRequest } from "../middleware/auth";
 const router = express.Router();
 
 // Get projects for the user's organization
-router.get("/", requireAuth, async (req: AuthRequest, res) => {
+router.get("/", requireAuth, async (req: AuthRequest, res: { json: (arg0: { projects: any; }) => void; status: (arg0: number) => { (): any; new(): any; json: { (arg0: { error: string; }): void; new(): any; }; }; }) => {
   const orgId = req.user!.organization_id;
   try {
     const result = await db.query("SELECT id, title, description, status, created_at FROM projects WHERE organization_id = $1 ORDER BY created_at DESC", [orgId]);
@@ -16,7 +16,7 @@ router.get("/", requireAuth, async (req: AuthRequest, res) => {
   }
 });
 
-router.post("/", requireAuth, async (req: AuthRequest, res) => {
+router.post("/", requireAuth, async (req: AuthRequest, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { error?: string; project?: any; }): void; new(): any; }; }; }) => {
   const orgId = req.user!.organization_id;
   const userId = req.user!.id;
   const { title, description, status } = req.body;
@@ -35,7 +35,7 @@ router.post("/", requireAuth, async (req: AuthRequest, res) => {
   }
 });
 
-router.put("/:id", requireAuth, async (req: AuthRequest, res) => {
+router.put("/:id", requireAuth, async (req: AuthRequest, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { error: string; }): void; new(): any; }; }; json: (arg0: { project: any; }) => void; }) => {
   const orgId = req.user!.organization_id;
   const userId = req.user!.id;
   const { id } = req.params;
@@ -51,7 +51,7 @@ router.put("/:id", requireAuth, async (req: AuthRequest, res) => {
   }
 });
 
-router.delete("/:id", requireAuth, async (req: AuthRequest, res) => {
+router.delete("/:id", requireAuth, async (req: AuthRequest, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { error: string; }): void; new(): any; }; }; json: (arg0: { ok: boolean; }) => void; }) => {
   const orgId = req.user!.organization_id;
   const userId = req.user!.id;
   const { id } = req.params;

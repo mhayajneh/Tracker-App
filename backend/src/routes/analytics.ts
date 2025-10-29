@@ -4,7 +4,7 @@ import { requireAuth, AuthRequest } from "../middleware/auth";
 
 const router = express.Router();
 
-router.get('/analytics/summary', requireAuth, async (req: AuthRequest, res) => {
+router.get('/analytics/summary', requireAuth, async (req: AuthRequest, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { error: string; }): void; new(): any; }; }; json: (arg0: { total: number; active: number; completed: number; average_completion_hours: number; }) => void; }) => {
     try {
         const user = (req as any).user;
         if (!user) return res.status(401).json({ error: 'Unauthorized' });

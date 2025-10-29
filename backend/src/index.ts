@@ -20,7 +20,7 @@ app.use('/api', ingestRoutes);
 app.use('/api', analytics);
 app.use('/api', jobs);
 app.use('/api/projects', rateLimit(50, 60000));
-app.get("/", (req,res) => res.json({ ok: true, message: "Project Tracker API" }));
+app.get("/", (req: any, res: { json: (arg0: { ok: boolean; message: string; }) => any; }) => res.json({ ok: true, message: "Project Tracker API" }));
 app.use(auditLog);
 const port = process.env.PORT || 4000;
 app.listen(port, () => {

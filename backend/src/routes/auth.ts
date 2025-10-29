@@ -8,7 +8,7 @@ dotenv.config();
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET || "secret";
 
-router.post("/signup", async (req, res) => {
+router.post("/signup", async (req: { body: { email: any; password: any; organization_name: any; }; }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { error: string; }): void; new(): any; }; }; json: (arg0: { token: any; user: { id: any; email: any; organization_id: any; }; }) => void; }) => {
   const { email, password, organization_name } = req.body;
   if (!email || !password || !organization_name) return res.status(400).json({ error: "email, password and organization_name required" });
   try {
@@ -32,7 +32,7 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-router.post("/login", async (req, res) => {
+router.post("/login", async (req: { body: { email: any; password: any; }; }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { error: string; }): void; new(): any; }; }; json: (arg0: { token: any; user: { id: any; email: any; organization_id: any; }; }) => void; }) => {
   const { email, password } = req.body;
   if (!email || !password) return res.status(400).json({ error: "email and password required" });
   try {

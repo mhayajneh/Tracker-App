@@ -11,7 +11,7 @@ interface IngestJob {
 
 const jobs: Record<string, IngestJob> = {};
 
-router.post('/ingest/init', (req, res) => {
+router.post('/ingest/init', (req: any, res: { json: (arg0: { job_id: any; upload_url: string; }) => void; }) => {
     const jobId = uuidv4();
     jobs[jobId] = { id: jobId, status: 'pending' };
     res.json({
@@ -20,7 +20,7 @@ router.post('/ingest/init', (req, res) => {
     });
 });
 
-router.post('/pipeline/callback', (req, res) => {
+router.post('/pipeline/callback', (req: { body: { job_id: any; }; }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { error: string; }): any; new(): any; }; }; json: (arg0: { success: boolean; job: IngestJob; }) => void; }) => {
     const { job_id } = req.body;
     if (!jobs[job_id]) return res.status(404).json({ error: 'Job not found' });
 
@@ -28,7 +28,7 @@ router.post('/pipeline/callback', (req, res) => {
     res.json({ success: true, job: jobs[job_id] });
 });
 
-router.get('/ingest/status/:id', (req, res) => {
+router.get('/ingest/status/:id', (req: { params: { id: string | number; }; }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { error: string; }): any; new(): any; }; }; json: (arg0: IngestJob) => void; }) => {
     const job = jobs[req.params.id];
     if (!job) return res.status(404).json({ error: 'Job not found' });
     res.json(job);

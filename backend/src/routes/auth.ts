@@ -1,5 +1,5 @@
 import express from "express";
-import bcrypt from "bcrypt";
+import * as bcrypt from 'bcryptjs';
 import jwt from "jsonwebtoken";
 import db from "../db";
 import dotenv from "dotenv";
